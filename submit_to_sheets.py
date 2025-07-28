@@ -9,7 +9,7 @@ SCOPES = [
 
 creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=SCOPES)
 client = gspread.authorize(creds)
-sheet = client.open("RentalData").Sheet1
+sheet = client.open("RentalData").sheet1
 
 
 # Load credentials from Streamlit Secrets
@@ -30,7 +30,7 @@ credentials = Credentials.from_service_account_info(service_account_info, scopes
 client = gspread.authorize(credentials)
 
 # You can change "RentalData" to your actual Google Sheet name
-sheet = client.open("RentalData").Sheet1
+sheet = client.open("RentalData").sheet1
 
 def submit_to_sheet(date, flats_a, flats_b, flats_c, total_cost, total_income, investor1, investor2, investor3):
     data = [str(date), flats_a, flats_b, flats_c, total_cost, total_income, investor1, investor2, investor3]
