@@ -1,22 +1,21 @@
-import streamlit as st
-import json
+import gspread
 from google.oauth2 import service_account
+import streamlit as st
 
-# Load credentials from Streamlit secrets
-creds_dict = st.secrets["gcp_service_account"]
-credentials = service_account.Credentials.from_service_account_info(dict(creds_dict))
+def submit_to_sheet(date, flat_a, flat_b, flat_c, total_cost, total_income, investor_shares):
+    creds_dict = st.secrets["gcp_service_account"]
+    creds = service_account.Credentials.from_service_account_info(dict(creds_dict))
+    client = gspread.authorize(creds)
 
-    # 👇 Replace with your actual sheet name
-    RentalData = client.open("RentalData").Sheet1
-
-    RentalData.append_row([
+    sheet = client.open("RentalData").sheet1  
+    sheet.append_row([
         date,
-        flats_a,
-        flats_b,
-        flats_c,
+        flat_a,
+        flat_b,
+        flat_c,
         total_cost,
         total_income,
-        inv1,
-        inv2,
-        inv3
+        investor_shares[0],
+        investor_shares[1],
+        investor_shares[2]
     ])
