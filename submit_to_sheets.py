@@ -3,7 +3,8 @@ import gspread
 from google.oauth2.service_account import Credentials
 
 # Define scope for Sheets API
-SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
+SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly", 
+          "https://www.googleapis.com/auth/spreadsheets"]
 
 # Load credentials from Streamlit Secrets
 service_account_info = {
