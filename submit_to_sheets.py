@@ -7,9 +7,9 @@ creds_dict = st.secrets["gcp_service_account"]
 credentials = service_account.Credentials.from_service_account_info(dict(creds_dict))
 
     # 👇 Replace with your actual sheet name
-    sheet = client.open("RentalData").Sheet1
+    RentalData = client.open("RentalData").Sheet1
 
-    sheet.append_row([
+    RentalData.append_row([
         date,
         flats_a,
         flats_b,
