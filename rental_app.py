@@ -17,7 +17,13 @@ with col2:
 with col3:
     flats_c = st.number_input("Number of Class C Flats", min_value=0, value=0)
     rent_c = st.number_input("Rent per Class C Flat (SAR)", min_value=0.0, value=0.0)
-
+# --- Store Inputs ---
+st.header("🏪 Store Information")
+col1, col2 = st.columns(2)
+with col1:
+    num_stores = st.number_input("Number of Stores", min_value=0, value=0)
+with col2:
+    rent_store = st.number_input("Rent per Store (SAR)", min_value=0.0, value=0.0)
 # --- Operational Cost Breakdown ---
 st.header("🧾 Operational Cost Breakdown")
 bill = st.number_input("Bill (SAR)", min_value=0.0, value=0.0)
@@ -37,7 +43,7 @@ with col3:
     investor3 = st.number_input("Investor 3 (%)", min_value=0.0, max_value=100.0, value=33.0)
 
 # --- Calculations ---
-total_income = (flats_a * rent_a) + (flats_b * rent_b) + (flats_c * rent_c)
+total_income = (flats_a * rent_a) + (flats_b * rent_b) + (flats_c * rent_c) + (num_stores * rent_store)
 net_income = total_income - total_cost
 
 if investor1 + investor2 + investor3 != 100:
