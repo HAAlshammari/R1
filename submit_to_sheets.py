@@ -2,9 +2,15 @@ import streamlit as st
 import gspread
 from google.oauth2.service_account import Credentials
 
-# Define scope for Sheets API
-SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly", 
-          "https://www.googleapis.com/auth/spreadsheets"]
+SCOPES = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive"
+]
+
+creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=SCOPES)
+client = gspread.authorize(creds)
+sheet = client.open("RentalData").sheet1
+
 
 # Load credentials from Streamlit Secrets
 service_account_info = {
